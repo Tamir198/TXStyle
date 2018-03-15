@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/options_margin_top"
             android:layout_marginLeft="@dimen/options_margin_left"
-            android:src="@drawable/pick_your_background"/>
+            android:src="@drawable/pick_your_background"
+            android:maxWidth="@dimen/pick_your_background_width"
+            android:maxHeight="@dimen/pick_your_background_height"/>
         <ImageButton
             android:id="@+id/choose_camera_background"
             android:layout_width="wrap_content"
@@ -29,6 +31,8 @@
             android:src="@drawable/camera"
             android:background="@color/optionsColor"
             android:onClick="onCameraClick"
+            android:maxWidth="@dimen/choose_btn_size"
+            android:maxHeight="@dimen/choose_btn_size"
             />
         <ImageButton
             android:id="@+id/choose_gallery_background"
@@ -39,6 +43,8 @@
             android:src="@drawable/gallry"
             android:background="@color/optionsColor"
             android:onClick="onGalleryClick"
+            android:maxWidth="@dimen/choose_btn_size"
+            android:maxHeight="@dimen/choose_btn_size"
             />
         <ImageButton
             android:id="@+id/choose_color_picker_background"
@@ -49,6 +55,8 @@
             android:src="@drawable/color_picker"
             android:background="@color/optionsColor"
             android:onClick="onColorPickerClick"
+            android:maxWidth="@dimen/choose_btn_size"
+            android:maxHeight="@dimen/choose_btn_size"
             />
 
     </LinearLayout>

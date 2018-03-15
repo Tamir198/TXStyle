@@ -5,5 +5,7 @@
     <dimen name="options_margin_between_buttons" type="dimen" format="float">31dp</dimen>
     <dimen name="options_margin_from_logo_to_button" type="dimen" format="float">54.5dp</dimen>
     <dimen name="options_margin_buttons_left" type="dimen" format="float">138dp</dimen>
-
+    <dimen name="pick_your_background_width" format = "float">306.5dp</dimen>
+    <dimen name="pick_your_background_height" format = "float">53dp</dimen>
+    <dimen name="choose_btn_size" format = "float">86.5dp</dimen>
 </resources>
