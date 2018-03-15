@@ -20,7 +20,7 @@ public class Testing extends AppCompatActivity {
          //test = findViewById(R.id.test);
          imageView = findViewById(R.id.image);
     }
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -47,4 +47,5 @@ public class Testing extends AppCompatActivity {
             }
         });
     }
+    */
 }
