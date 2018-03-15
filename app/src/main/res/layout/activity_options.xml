@@ -27,6 +27,8 @@
             android:layout_marginTop="@dimen/options_margin_from_logo_to_button"
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/camera"
+            android:background="@color/optionsColor"
+            android:onClick="onCameraClick"
             />
         <ImageButton
             android:id="@+id/choose_gallery_background"
@@ -35,6 +37,8 @@
             android:layout_marginTop="@dimen/options_margin_between_buttons"
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/gallry"
+            android:background="@color/optionsColor"
+            android:onClick="onGalleryClick"
             />
         <ImageButton
             android:id="@+id/choose_color_picker_background"
@@ -43,6 +47,8 @@
             android:layout_marginTop="@dimen/options_margin_between_buttons"
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/color_picker"
+            android:background="@color/optionsColor"
+            android:onClick="onColorPickerClick"
             />
 
     </LinearLayout>
