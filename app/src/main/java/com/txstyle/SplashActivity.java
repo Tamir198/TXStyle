@@ -1,27 +1,34 @@
 package com.txstyle;
 
 import android.content.Intent;
+import android.graphics.Path;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
-        //Intent i = new Intent(this,splahScreenActivity.class);
-        //startActivity(i);
+        setContentView(R.layout.activity_splah_screen);
+       // textView = findViewById(R.id.textView); use any view to check positions
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent i = new Intent(SplashActivity.this,Options.class);
+                startActivity(i);
+                finish();
+            }
+        }, 2000);
+
 
     }
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
 
 
 }
