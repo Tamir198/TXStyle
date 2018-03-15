@@ -1,5 +1,8 @@
 package com.txstyle;
 
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewTreeObserver;
@@ -14,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.textView);
+        //Intent i = new Intent(this,splahScreenActivity.class);
+        //startActivity(i);
+
     }
 
     @Override
@@ -27,4 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }
