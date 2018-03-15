@@ -30,7 +30,6 @@
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/camera"
             android:background="@color/optionsColor"
-            android:onClick="onCameraClick"
             android:maxWidth="@dimen/choose_btn_size"
             android:maxHeight="@dimen/choose_btn_size"
             />
@@ -42,7 +41,6 @@
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/gallry"
             android:background="@color/optionsColor"
-            android:onClick="onGalleryClick"
             android:maxWidth="@dimen/choose_btn_size"
             android:maxHeight="@dimen/choose_btn_size"
             />
@@ -54,9 +52,9 @@
             android:layout_marginLeft="@dimen/options_margin_buttons_left"
             android:src="@drawable/color_picker"
             android:background="@color/optionsColor"
-            android:onClick="onColorPickerClick"
             android:maxWidth="@dimen/choose_btn_size"
             android:maxHeight="@dimen/choose_btn_size"
+
             />
 
     </LinearLayout>
