@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6dced6bb0376826e04d8c1cef70803fba8c90dcf
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".splahScreenActivity"></activity>
+=======
+        <activity android:name=".Options">
+
+        </activity>
+>>>>>>> 6dced6bb0376826e04d8c1cef70803fba8c90dcf
     </application>
 
 
