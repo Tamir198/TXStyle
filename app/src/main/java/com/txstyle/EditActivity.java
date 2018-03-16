@@ -36,6 +36,10 @@ public class EditActivity extends AppCompatActivity {
     RelativeLayout myBackground;
     ImageView colorPicker;
     ImageView textEfects;
+    ImageView textEdit;
+    ImageView slidersClose;
+
+    RelativeLayout sliders;
 
     private int xDelta;
     private int yDelta;
@@ -163,6 +167,26 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+
+        textEdit = findViewById(R.id.main_edit_size);
+        sliders = findViewById(R.id.sliders);
+        slidersClose = findViewById(R.id.slider_close);
+
+
+        textEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.VISIBLE);
+
+            }
+        });
+        slidersClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.GONE);
+
+            }
+        });
 
 
     }
