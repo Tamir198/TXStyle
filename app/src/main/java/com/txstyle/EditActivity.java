@@ -2,6 +2,9 @@ package com.txstyle;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,11 +18,16 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.esafirm.imagepicker.features.ImagePicker;
+import com.esafirm.imagepicker.model.Image;
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+
+import java.io.File;
 
 /**
  * Created by admin on 16/03/2018.
@@ -31,23 +39,30 @@ public class EditActivity extends AppCompatActivity {
     RelativeLayout myBackground;
     ImageView colorPicker;
     ImageView textEfects;
-
+    ImageView background;
+    Image imageFromOptions,imageTo;
+    imageHandler imageHandler;
     private int xDelta;
     private int yDelta;
+    int width;
+    int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
+        Toast.makeText(this, "got to EditActivity", Toast.LENGTH_LONG)
+                .show();
         colorPicker = findViewById(R.id.main_color_picker);
         myBackground = findViewById(R.id.main_background);
-
+        background = findViewById(R.id.background);
         textEfects = findViewById(R.id.main_text_effect);
-
         textView = findViewById(R.id.textView);
+        imageHandler = new imageHandler();
+        imageFromOptions = getIntent().getParcelableExtra("KEY_TEXT");
+        if (imageFromOptions != null) {
+            changeBackgroundPicture(imageFromOptions,imageFromOptions.getPath());
+        }
 //        Intent i = new Intent(this,splahScreenActivity.class);
 //        startActivity(i);
 
@@ -90,7 +105,6 @@ public class EditActivity extends AppCompatActivity {
         });
 
 
-
         colorPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +144,6 @@ public class EditActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     @Override
@@ -145,7 +158,7 @@ public class EditActivity extends AppCompatActivity {
         });
     }
 
-    public void changeBackgroundColor(int selectedColor){
+    public void changeBackgroundColor(int selectedColor) {
         myBackground.setBackgroundColor(selectedColor);
 
     }
@@ -191,5 +204,29 @@ public class EditActivity extends AppCompatActivity {
         };
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+            // or get a single image only
+            Image image = ImagePicker.getFirstImageOrNull(data);
+            changeBackgroundPicture(image,image.getPath());
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
+    public void onEditGalleryClick(View view) {
+        imageHandler.pickFromGallery(EditActivity.this);
+    }
+
+    public void changeBackgroundPicture(Image image,String path) {
+        File imgFile = new File(image.getPath());
+        if (imgFile.exists()) {
+            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            background.setImageBitmap(myBitmap);
+        }
+    }
+
+    public void onEditCameraClick(View view) {
+        imageHandler.pickFromCamera(EditActivity.this);
+    }
 }
