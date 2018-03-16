@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@color/optionsColor"
-            android:src="@drawable/camera"
+            android:src="@drawable/camera_big"
             android:onClick="onCameraClick"/>
 
         <ImageButton
