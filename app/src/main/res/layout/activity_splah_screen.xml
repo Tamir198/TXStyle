@@ -6,13 +6,12 @@
     android:layout_height="640dp"
     android:maxHeight="640dp"
     android:minWidth="360.5dp"
-    tools:context="com.txstyle.splahScreenActivity">
+    tools:context="com.txstyle.SplashActivity">
 
     <ImageView
         android:layout_width="118dp"
         android:layout_height="114dp"
         android:layout_marginTop="263dp"
-        android:layout_marginBottom="263dp"
         android:layout_marginLeft="121.5dp"
         android:layout_marginRight="125.5dp"
         android:src="@drawable/logo" />
