@@ -47,6 +47,11 @@ public class EditActivity extends AppCompatActivity {
     ImageView background;
     Image imageFromOptions,imageTo;
     imageHandler imageHandler;
+    ImageView textEdit;
+    ImageView slidersClose;
+
+    RelativeLayout sliders;
+
     private int xDelta;
     private int yDelta;
     int width;
@@ -61,8 +66,9 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this, "got to EditActivity", Toast.LENGTH_LONG)
-                .show();
+
+
+
         colorPicker = findViewById(R.id.main_color_picker);
         myBackground = findViewById(R.id.main_background);
         background = findViewById(R.id.background);
@@ -173,6 +179,27 @@ public class EditActivity extends AppCompatActivity {
                         })
                         .build()
                         .show();
+
+            }
+        });
+
+
+        textEdit = findViewById(R.id.main_edit_size);
+        sliders = findViewById(R.id.sliders);
+        slidersClose = findViewById(R.id.slider_close);
+
+
+        textEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.VISIBLE);
+
+            }
+        });
+        slidersClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.GONE);
 
             }
         });
