@@ -120,7 +120,7 @@ public class Options extends AppCompatActivity {
 
     };
     public void changeActivityToTesting() {
-        Intent intent = new Intent(this,Testing.class);
+        Intent intent = new Intent(this,EditActivity.class);
         startActivity(intent);
 
     }

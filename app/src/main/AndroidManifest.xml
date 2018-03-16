@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Options"/>
+        <activity android:name=".EditActivity"/>
         <activity android:name=".Testing"/>
     </application>
 

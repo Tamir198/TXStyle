@@ -1,61 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/optionsColor"
     tools:context="com.txstyle.Options">
 
-    <LinearLayout
-        android:id="@+id/options_layout"
+    <ImageView
+        android:id="@+id/pick_your_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/options_margin_left"
+        android:layout_marginTop="79dp"
+        android:src="@drawable/pick_your_background" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:maxHeight="@dimen/options_margin_left"
-        android:background="@color/optionsColor"
-        android:orientation="vertical">
-        <ImageView
-            android:id="@+id/pick_your_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/options_margin_top"
-            android:layout_marginLeft="@dimen/options_margin_left"
-            android:src="@drawable/pick_your_background"
-            android:maxWidth="@dimen/pick_your_background_width"
-            android:maxHeight="@dimen/pick_your_background_height"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
         <ImageButton
             android:id="@+id/choose_camera_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/options_margin_from_logo_to_button"
-            android:layout_marginLeft="@dimen/options_margin_buttons_left"
-            android:src="@drawable/camera"
+            android:layout_centerHorizontal="true"
             android:background="@color/optionsColor"
-            android:maxWidth="@dimen/choose_btn_size"
-            android:maxHeight="@dimen/choose_btn_size"
-            />
+            android:src="@drawable/camera" />
+
         <ImageButton
             android:id="@+id/choose_gallery_background"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/choose_camera_background"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/options_margin_between_buttons"
-            android:layout_marginLeft="@dimen/options_margin_buttons_left"
-            android:src="@drawable/gallry"
-            android:background="@color/optionsColor"
-            android:maxWidth="@dimen/choose_btn_size"
-            android:maxHeight="@dimen/choose_btn_size"
-            />
+            android:background="@drawable/btn_gallery_selector"
+             />
+
         <ImageButton
             android:id="@+id/choose_color_picker_background"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/choose_gallery_background"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/options_margin_between_buttons"
-            android:layout_marginLeft="@dimen/options_margin_buttons_left"
-            android:src="@drawable/color_picker"
-            android:background="@color/optionsColor"
-            android:maxWidth="@dimen/choose_btn_size"
-            android:maxHeight="@dimen/choose_btn_size"
-
-            />
-
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+            android:background="@drawable/btn_background_selector"
+             />
+    </RelativeLayout>
+</RelativeLayout>
