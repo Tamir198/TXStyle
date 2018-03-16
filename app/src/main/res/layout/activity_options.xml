@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="@color/optionsColor"
-            android:src="@drawable/camera" />
+            android:src="@drawable/camera"
+            android:onClick="onCameraClick"/>
 
         <ImageButton
             android:id="@+id/choose_gallery_background"
@@ -37,6 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/options_margin_between_buttons"
             android:background="@drawable/btn_gallery_selector"
+            android:onClick="onGalleryClick"
              />
 
         <ImageButton
@@ -47,6 +49,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/options_margin_between_buttons"
             android:background="@drawable/btn_background_selector"
+            android:onClick="onColorPicker"
              />
     </RelativeLayout>
 </RelativeLayout>
