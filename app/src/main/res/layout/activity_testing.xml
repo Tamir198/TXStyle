@@ -5,13 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.txstyle.Testing">
+    tools:context="com.txstyle.Testing"
+    android:background="#456871"
+    android:id="@+id/myLayout">
+
+    <!--
 <LinearLayout
     android:id="@+id/linearLayout"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:background="#ff13"></LinearLayout>
+    -->
+    <LinearLayout
+        android:id="@+id/myInnerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#456"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/myInnerLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#456"
+        android:orientation="horizontal"></LinearLayout>
+
 
 
 
