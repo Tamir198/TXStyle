@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,6 +22,9 @@ import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+import com.txstyle.Adapters.MyRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 /**
  * Created by admin on 16/03/2018.
@@ -34,6 +39,11 @@ public class EditActivity extends AppCompatActivity {
 
     private int xDelta;
     private int yDelta;
+
+    MyRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,7 @@ public class EditActivity extends AppCompatActivity {
 
                 builder.setView(textEfectView);
 
+
 //                final EditText contactName = (EditText) textEfectView.findViewById(R.id.contact_name);
 //                final EditText contactPhone = (EditText) textEfectView.findViewById(R.id.contact_phone);
 
@@ -82,9 +93,32 @@ public class EditActivity extends AppCompatActivity {
                                 dialogInterface.cancel();
                             }
                         });
-                builder.create();
 
                 builder.show();
+
+                ArrayList<EfectObject> efectObject = new ArrayList<>();
+                efectObject.add(new EfectObject(R.drawable.hearts, "Hearts"));
+                efectObject.add(new EfectObject(R.drawable.clouds, "Clouds"));
+                efectObject.add(new EfectObject(R.drawable.balloons, "Balloons"));
+                efectObject.add(new EfectObject(R.drawable.ice, "Ice"));
+                efectObject.add(new EfectObject(R.drawable.cheese, "Cheese"));
+                efectObject.add(new EfectObject(R.drawable.gel, "Gel"));
+                efectObject.add(new EfectObject(R.drawable.smoke, "Smoke"));
+                efectObject.add(new EfectObject(R.drawable.steam, "Steam"));
+                efectObject.add(new EfectObject(R.drawable.coco, "Coco"));
+                efectObject.add(new EfectObject(R.drawable.flower, "Flower"));
+                efectObject.add(new EfectObject(R.drawable.leaf, "Leaf"));
+                efectObject.add(new EfectObject(R.drawable.water, "Water"));
+
+                recyclerView = textEfectView.findViewById(R.id.efects_recycler_view);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(EditActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
+                adapter = new MyRecyclerViewAdapter(EditActivity.this, efectObject );
+                //adapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) EditActivity.this);
+                recyclerView.setAdapter(adapter);
+
+
 
             }
         });
