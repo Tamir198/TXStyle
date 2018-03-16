@@ -25,7 +25,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
  * Created by admin on 16/03/2018.
  */
 
-public class MainActivity2 extends AppCompatActivity {
+public class EditActivity extends AppCompatActivity {
 
     TextView textView;
     RelativeLayout myBackground;
@@ -57,11 +57,11 @@ public class MainActivity2 extends AppCompatActivity {
         textEfects.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LayoutInflater inflater = LayoutInflater.from(MainActivity2.this);
+                LayoutInflater inflater = LayoutInflater.from(EditActivity.this);
 
                 View textEfectView = inflater.inflate(R.layout.dialog_text_effect, null);
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity2.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
 
                 builder.setView(textEfectView);
 
@@ -101,7 +101,7 @@ public class MainActivity2 extends AppCompatActivity {
                     color = ((ColorDrawable) background).getColor();
 
                 ColorPickerDialogBuilder
-                        .with(MainActivity2.this)
+                        .with(EditActivity.this)
                         .setTitle("Choose color")
                         .initialColor(color)
                         .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
