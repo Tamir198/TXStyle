@@ -38,12 +38,16 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.txstyle.Adapters.MyRecyclerViewAdapter;
 
+<<<<<<< HEAD
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import java.io.File;
+=======
+import java.util.ArrayList;
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
 
 /**
  * Created by admin on 16/03/2018.
@@ -55,6 +59,7 @@ public class EditActivity extends AppCompatActivity {
     RelativeLayout myBackground;
     ImageView colorPicker;
     ImageView textEfects;
+<<<<<<< HEAD
     ImageView background;
     Image imageFromOptions, imageTo;
     imageHandler imageHandler;
@@ -68,6 +73,10 @@ public class EditActivity extends AppCompatActivity {
     ViewGroup line3;
     View render;
     SeekBar sizeSlider;
+=======
+    ImageView textEdit;
+    ImageView slidersClose;
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
 
     RelativeLayout sliders;
 
@@ -78,6 +87,11 @@ public class EditActivity extends AppCompatActivity {
 
     MyRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
+
+
+    MyRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
+
 
 
     @Override
@@ -151,6 +165,13 @@ public class EditActivity extends AppCompatActivity {
 
                 builder.setView(textEfectView);
 
+<<<<<<< HEAD
+=======
+
+//                final EditText contactName = (EditText) textEfectView.findViewById(R.id.contact_name);
+//                final EditText contactPhone = (EditText) textEfectView.findViewById(R.id.contact_phone);
+
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
 
                 builder
                         .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
@@ -186,11 +207,19 @@ public class EditActivity extends AppCompatActivity {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(EditActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
+<<<<<<< HEAD
                 adapter = new MyRecyclerViewAdapter(EditActivity.this, efectObject);
+=======
+                adapter = new MyRecyclerViewAdapter(EditActivity.this, efectObject );
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
                 //adapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) EditActivity.this);
                 recyclerView.setAdapter(adapter);
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
             }
         });
 
@@ -237,6 +266,26 @@ public class EditActivity extends AppCompatActivity {
         textEdit = findViewById(R.id.main_edit_size);
         sliders = findViewById(R.id.sliders);
         slidersClose = findViewById(R.id.slider_close);
+<<<<<<< HEAD
+=======
+
+
+        textEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.VISIBLE);
+
+            }
+        });
+        slidersClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sliders.setVisibility(View.GONE);
+
+            }
+        });
+
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
 
 
         textEdit.setOnClickListener(new View.OnClickListener() {

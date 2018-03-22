@@ -5,7 +5,10 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:id="@+id/sliders"
+<<<<<<< HEAD
     android:background="@color/backgroundColor"
+=======
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
     android:visibility="gone">
 
     <RelativeLayout
@@ -20,12 +23,19 @@
             android:src="@drawable/smaller"/>
 
         <SeekBar
+<<<<<<< HEAD
             android:id="@+id/size_slider"
+=======
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/smaller"
             android:layout_toStartOf="@id/bigger"
+<<<<<<< HEAD
             android:progress="0"/>
+=======
+            android:progress="50"/>
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
 
         <ImageView
             android:layout_width="wrap_content"

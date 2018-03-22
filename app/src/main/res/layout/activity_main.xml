@@ -123,6 +123,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
+<<<<<<< HEAD
             <EditText
                 android:id="@+id/editText"
                 android:layout_width="match_parent"
@@ -135,6 +136,8 @@
                 android:hint="Enter your text"
                 />
 
+=======
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -149,7 +152,11 @@
 
 
             <ImageView
+<<<<<<< HEAD
                 android:id="@+id/render"
+=======
+
+>>>>>>> 7193b53bac02c20858cbbe5f83e2419501ed9155
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/fub"
