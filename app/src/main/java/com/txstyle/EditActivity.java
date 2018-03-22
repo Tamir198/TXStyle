@@ -5,10 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,9 +20,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +38,9 @@ import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.txstyle.Adapters.MyRecyclerViewAdapter;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import java.io.File;
@@ -45,10 +56,18 @@ public class EditActivity extends AppCompatActivity {
     ImageView colorPicker;
     ImageView textEfects;
     ImageView background;
-    Image imageFromOptions,imageTo;
+    Image imageFromOptions, imageTo;
     imageHandler imageHandler;
     ImageView textEdit;
     ImageView slidersClose;
+    EditText editText;
+    View sharethis;
+
+    ViewGroup line1;
+    ViewGroup line2;
+    ViewGroup line3;
+    View render;
+    SeekBar sizeSlider;
 
     RelativeLayout sliders;
 
@@ -61,28 +80,64 @@ public class EditActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
+        line1 = findViewById(R.id.textline1);
+        line2 = findViewById(R.id.textline2);
+        line3 = findViewById(R.id.textline3);
+        render = findViewById(R.id.render);
+        editText = findViewById(R.id.editText);
+        sizeSlider = findViewById(R.id.size_slider);
+
+        sharethis = findViewById(R.id.share_this);
+
+        sharethis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                share();
+            }
+        });
+
+        sizeSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                render(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        render.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                render(0);
+            }
+        });
+
 
         colorPicker = findViewById(R.id.main_color_picker);
         myBackground = findViewById(R.id.main_background);
         background = findViewById(R.id.background);
         textEfects = findViewById(R.id.main_text_effect);
-        textView = findViewById(R.id.textView);
         imageHandler = new imageHandler();
         imageFromOptions = getIntent().getParcelableExtra("KEY_TEXT");
         if (imageFromOptions != null) {
-            changeBackgroundPicture(imageFromOptions,imageFromOptions.getPath());
+            changeBackgroundPicture(imageFromOptions, imageFromOptions.getPath());
         }
-//        Intent i = new Intent(this,splahScreenActivity.class);
-//        startActivity(i);
 
-        textView.setOnTouchListener(onTouchListener());
+
 
 
         textEfects.setOnClickListener(new View.OnClickListener() {
@@ -95,10 +150,6 @@ public class EditActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditActivity.this);
 
                 builder.setView(textEfectView);
-
-
-//                final EditText contactName = (EditText) textEfectView.findViewById(R.id.contact_name);
-//                final EditText contactPhone = (EditText) textEfectView.findViewById(R.id.contact_phone);
 
 
                 builder
@@ -135,10 +186,9 @@ public class EditActivity extends AppCompatActivity {
                 recyclerView.setHasFixedSize(true);
                 recyclerView.setLayoutManager(new LinearLayoutManager(EditActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
-                adapter = new MyRecyclerViewAdapter(EditActivity.this, efectObject );
+                adapter = new MyRecyclerViewAdapter(EditActivity.this, efectObject);
                 //adapter.setClickListener((MyRecyclerViewAdapter.ItemClickListener) EditActivity.this);
                 recyclerView.setAdapter(adapter);
-
 
 
             }
@@ -207,23 +257,70 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
+    private void render(int size) {
+        line1.removeAllViews();
+        String testChars = editText.getText().toString().toLowerCase();
+        for (int i = 0; i < testChars.length(); i++) {
+            char c = testChars.charAt(i);
+            //ImageView Setup
+            final ImageView imageView = new ImageView(EditActivity.this);
+            //setting image resource
+            String font = "hearts_"; // or hearts_
+            int id = getResources().getIdentifier(font + "" + c, "drawable", getPackageName());
+            imageView.setImageResource(id);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                    Math.round(60 + size), Math.round(60 + size)));
+            line1.addView(imageView);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
-        textView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                System.out.println(textView.getHeight()); //height is ready
-                textView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            }
-        });
+//        textView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                System.out.println(textView.getHeight()); //height is ready
+//                textView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//            }
+//        });
+    }
+    public Bitmap getBitmapFromView() {
+        //Define a bitmap with the same size as the myBackground
+        Bitmap returnedBitmap = Bitmap.createBitmap(myBackground.getWidth(), myBackground.getHeight(),Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the myBackground's background
+        Drawable bgDrawable =myBackground.getBackground();
+        if (bgDrawable!=null)
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        else
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        // draw the myBackground on the canvas
+        myBackground.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
     }
 
-    public void changeBackgroundColor(int selectedColor) {
-        myBackground.setBackgroundColor(selectedColor);
-
+    private void share() {
+        Bitmap icon = getBitmapFromView();
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        icon.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        File f = new File(Environment.getExternalStorageDirectory() + File.separator + "temporary_file.jpg");
+        try {
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        share.putExtra(Intent.EXTRA_STREAM, Uri.parse("file:///sdcard/temporary_file.jpg"));
+        startActivity(Intent.createChooser(share, "Share Image"));
     }
-
 
     private View.OnTouchListener onTouchListener() {
         return new View.OnTouchListener() {
@@ -270,7 +367,7 @@ public class EditActivity extends AppCompatActivity {
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             // or get a single image only
             Image image = ImagePicker.getFirstImageOrNull(data);
-            changeBackgroundPicture(image,image.getPath());
+            changeBackgroundPicture(image, image.getPath());
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -279,13 +376,20 @@ public class EditActivity extends AppCompatActivity {
         imageHandler.pickFromGallery(EditActivity.this);
     }
 
-    public void changeBackgroundPicture(Image image,String path) {
+    public void changeBackgroundPicture(Image image, String path) {
         File imgFile = new File(image.getPath());
         if (imgFile.exists()) {
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
             background.setImageBitmap(myBitmap);
+            background.setBackgroundColor(ContextCompat.getColor(this, android.R.color.transparent));
         }
     }
+
+    public void changeBackgroundColor(int selectedColor) {
+        background.setBackgroundColor(selectedColor);
+        background.setImageBitmap(null);
+    }
+
 
     public void onEditCameraClick(View view) {
         imageHandler.pickFromCamera(EditActivity.this);
